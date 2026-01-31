@@ -1,0 +1,45 @@
+service: ats-integration-ms
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  stage: dev
+  useDotenv: true
+  environment:
+    ATS_API_KEY: ${env:ATS_API_KEY, ''}
+    ATS_BASE_URL: ${env:ATS_BASE_URL, ''}
+
+functions:
+  getJobs:
+    handler: handler.get_jobs
+    events:
+      - http:
+          path: jobs
+          method: get
+          cors: true
+
+  createCandidate:
+    handler: handler.create_candidate
+    events:
+      - http:
+          path: candidates
+          method: post
+          cors: true
+
+  getApplications:
+    handler: handler.get_applications
+    events:
+      - http:
+          path: applications
+          method: get
+          cors: true
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-python-requirements
+  - serverless-offline
+
+custom:
+  pythonRequirements:
+    dockerizePip: false
