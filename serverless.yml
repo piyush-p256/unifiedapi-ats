@@ -7,8 +7,10 @@ provider:
   stage: dev
   useDotenv: true
   environment:
-    ATS_API_KEY: ${env:ATS_API_KEY, ''}
-    ATS_BASE_URL: ${env:ATS_BASE_URL, ''}
+    ZOHO_CLIENT_ID: ${env:ZOHO_CLIENT_ID, ''}
+    ZOHO_CLIENT_SECRET: ${env:ZOHO_CLIENT_SECRET, ''}
+    ZOHO_REFRESH_TOKEN: ${env:ZOHO_REFRESH_TOKEN, ''}
+    ZOHO_DC: ${env:ZOHO_DC, 'com'}
 
 functions:
   getJobs:
